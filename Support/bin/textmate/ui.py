@@ -75,8 +75,6 @@ def complete(choices, options = {}, block = None):
         process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=DEVNULL, stderr=DEVNULL)
         process.stdin.write(f.read())
 
-
-        textmate.exit_show_tool_tip(','.join(command))
         
         # TODO: How to prevent the command from inserting the result??
         
