@@ -28,13 +28,13 @@ def main():
     #project.validate(self.project_path)
     caret_index = source.find(textmate.CURRENT_LINE) + textmate.LINE_INDEX
 
-    current_word = textmate.current_word(r"[\w_]*", 'both')
+    current_word = textmate.current_word(r"[a-zA-Z_]*", 'both')
 
     proposals = codeassist.code_assist(project, source, caret_index, resource)
     
     try:
         if len(proposals) == 0:
-            textmate.exit_show_tool_tip("No completions.")
+            raise 'no proposals found'
     except:
         textmate.exit_show_tool_tip("No completions.")
     
@@ -52,10 +52,6 @@ def main():
 
         #plist = "{ menuItems=(%s);}"
         ui.complete(names, {'initial_filter': current_word, 'extra_chars': "_"})
-
-
-
-
 
 
 

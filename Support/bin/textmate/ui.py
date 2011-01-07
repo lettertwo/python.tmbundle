@@ -33,11 +33,11 @@ def complete(choices, options = {}):
     if '2' not in textmate.DIALOG:
         raise 'Dialog2 not found.'
     
-    characters = 'a-zA-Z0-9'
-    if 'extra_chars' in options:
-        characters += re.escape(options['extra_chars'])
-    
     if 'initial_filter' not in options:
+        characters = 'a-zA-Z0-9'
+        if 'extra_chars' in options:
+            characters += re.escape(options['extra_chars'])
+
         options['initial_filter'] = textmate.current_word(characters, "left")
 
     command = [textmate.DIALOG, "popup", "--returnChoice"]
